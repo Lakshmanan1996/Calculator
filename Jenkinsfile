@@ -115,12 +115,19 @@ pipeline {
 
                         --nvdApiKey YOUR_NVD_API_KEY
 
+                        
+
                         --exclude **/node_modules/**
                         --exclude **/dist/**
                         --exclude **/target/**
                         --exclude **/.git/**
                     '''
-                )   
+                ) 
+
+                dependencyCheckPublisher(
+                    pattern: 'dependency-check-report/dependency-check-report.xml'
+                )
+
             }
         }
 
@@ -183,12 +190,6 @@ pipeline {
     
 
     post {
-        always{
-            dependencyCheckPublisher(
-                pattern: 'dependency-check-report/dependency-check-report.xml'
-                
-            )
-        }
         success {
             echo "✅ Calculator CI Pipeline SUCCESS"
         }
