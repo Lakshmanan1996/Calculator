@@ -183,6 +183,12 @@ pipeline {
     
 
     post {
+        always{
+            dependencyCheckPublisher(
+                pattern: 'dependency-check-report/dependency-check-report.xml'
+                
+            )
+        }
         success {
             echo "✅ Calculator CI Pipeline SUCCESS"
         }
